@@ -42,9 +42,9 @@ In this project, my primary focus is on addressing key challenges related to shi
    - The first objective involves analyzing the trend of shipment delays over time. By compiling information on the average days of shipment delay.
    - Through this analysis, I intend to provide valuable insights into the efficiency of the shipment process, enabling us to identify potential areas for improvement to reduce delays and enhance overall performance.
 
-2. Inventory Exploration:
-   - The second objective is centered around exploring the relationship between warehouse inventory levels and observed order behavior.
-   - We utilize a legacy exploratory inventory proxy to compare inventory against average order-line quantities. This exploration helps identify potential candidates for inventory review. *Methodological Limitation: The inventory ratio computed uses the average units per observed order line-item rather than a time-normalized demand rate (e.g., units per month). This ratio serves as an exploratory proxy rather than a mathematically validated stock coverage or supply-vs-demand metric.*
+2. Inventory Coverage Estimation:
+   - The second objective is centered around estimating inventory coverage utilizing a time-aligned demand metric.
+   - We calculate monthly demand units by product, taking the average demand from the prior 3 completed months to compute the Estimated Months of Supply. *Methodological Limitation: The current-month demand is excluded, and the inventory snapshot timing remains unknown. Therefore, this metric is an estimate based on historical demand and is not an exact reorder-point or safety-stock model.*
 
 By focusing on these specific objectives, we aim to gain a comprehensive understanding of supply chain dynamics, highlight potential inefficiencies, and create insightful dashboards that will inform business stakeholders about current challenges and propose structural improvements to enhance overall operations. The smaller objectives allow for a targeted and time-efficient approach in achieving our overarching goals.
 
@@ -59,6 +59,8 @@ To view the detailed step-by-step process, you can refer to the provided link. T
 
 In this step, I utilized Power BI to create insightful dashboards based on the analyzed data. Through the interactive and dynamic capabilities of Power BI, I visually presented key metrics and trends related to shipment delays and inventory exploration. The data visualizations provided a clear overview of the shipment delay trend over time and highlighted any potential inefficiencies in the shipment process.
 
+**Note:** The Python notebook contains the corrected inventory metric (`Estimated Months of Supply`), but the committed `Supply Chain Dashboard.pbix` remains the original/legacy dashboard artifact utilizing the old `Stock Coverage Ratio`. Its inventory visuals have not yet been refreshed to the corrected metric. Therefore, the notebook is the current source of truth for the inventory methodology.
+
 Additionally, I visualized the ratio between inventory levels and observed orders for each product, helping flag products that may warrant further inventory review. These visualizations support exploratory review of inventory patterns and potential follow-up questions rather than proving true overstock or understock.
 
 For a more detailed exploration of the Power BI visualizations and analysis, kindly review the provided Power BI file within the repository.
@@ -71,8 +73,6 @@ The analysis of Shipment Delay reveals significant descriptive insights for the 
 Additionally, data preparation identified a major timestamp anomaly in the source data: 2,735 records (approximately 9% of source rows) had system dispatch dates preceding order creation by up to 2.5 years. These records were filtered out to ensure the integrity of the downstream analysis. It is recommended to investigate the source systems and operational processes to understand the root cause of this anomaly and improve data quality.
 
 Based on the inventory exploration, "Just In Time" has identified products with substantial stored inventory but no observed historical order activity in the dataset. Examples include the Bowflex SelectTech 1090 Dumbbells, Bushnell Pro X7 Jolt Slope Rangefinder, and Dell Laptop. These products are potential candidates for an inventory review, as carrying inventory with zero observed orders can lead to unnecessary storage costs.
-
-*Methodological Limitation:* It is important to note that the inventory metric utilizes an average order-line quantity rather than a time-normalized demand rate. Because of this limitation, the metric functions as an exploratory proxy rather than a mathematical confirmation of overstock or understock. Future iterations of this project should aim to incorporate time-series demand forecasting for more robust inventory coverage metrics.
 
 ## Thank You
 Thank you for exploring my supply chain analytics project repository. As I continue to improve my analytical skill, I would greatly appreciate any feedback, suggestions, or critiques you may have. Please feel free to explore the Power BI visualizations and analysis provided to gain a deeper understanding of the findings.
