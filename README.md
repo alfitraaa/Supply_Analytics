@@ -9,7 +9,7 @@ As the main data analyst for "Just In Time", I was asked to help solve key shipp
 |:---|:---|:---|:---|
 | Customer | Customer ID | orders_and_shipments.csv | Unique customer identification |
 | Customer | Customer Market | orders_and_shipments.csv | Geographic grouping of customer countries, with values such as Europe, LATAM, Pacific Asia, etc. |
-| Customer | Customer Region | orders_and_shipments.csv | Geographic grouping of customer countries, such as Northern Europe, Western Europe, etc. |
+| Customer | Customer Region | orders_and_shipments.csv | Geographic grouping of customer countries, with values such as Northern Europe, Western Europe, etc. |
 | Customer | Customer Country | orders_and_shipments.csv | Customer's country |
 | Order info | Order ID | orders_and_shipments.csv | Unique Order identification. Order groups one or multiple Order Items |
 | Order info | Order Item ID | orders_and_shipments.csv | Unique Order Item identification. Order Item always belong to just one Order |
